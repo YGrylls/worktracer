@@ -1,7 +1,7 @@
 package com.stu.worktracer.dao;
 
 public class User {
-    private long uid;
+    private Long uid;
     private String username;
     private String pw;
 
@@ -9,11 +9,11 @@ public class User {
     public User() {
     }
 
-    public long getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

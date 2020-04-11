@@ -6,29 +6,37 @@ import java.util.Date;
 //a temperate entity
 //everyday this table will be cleaned, data will be transfer to es
 public class CheckInOut {
-    private long uid;
-    private long companyId;
-    private int percentFix;
+    private Long uid;
+    private Long companyId;
+    private Integer percentFix;
     private Date checkIn;
     private Date checkOut;
 
     public CheckInOut() {
     }
 
-    public long getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
-    public long getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(long companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public Integer getPercentFix() {
+        return percentFix;
+    }
+
+    public void setPercentFix(Integer percentFix) {
+        this.percentFix = percentFix;
     }
 
     public Date getCheckIn() {
@@ -45,13 +53,5 @@ public class CheckInOut {
 
     public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
-    }
-
-    public int getPercentFix() {
-        return percentFix;
-    }
-
-    public void setPercentFix(int percentFix) {
-        this.percentFix = percentFix;
     }
 }

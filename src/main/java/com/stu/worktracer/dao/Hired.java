@@ -3,26 +3,26 @@ package com.stu.worktracer.dao;
 import java.util.Date;
 
 public class Hired {
-    private long uid;
-    private long companyId;
+    private Long uid;
+    private Long companyId;
     private Date modTime;
 
     public Hired() {
     }
 
-    public long getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
-    public long getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(long companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 

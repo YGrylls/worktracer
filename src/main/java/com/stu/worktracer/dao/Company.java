@@ -2,21 +2,21 @@ package com.stu.worktracer.dao;
 
 
 public class Company {
-    private long companyId;
+    private Long companyId;
     private String name;
     private String workshop;
-    private int rate;
-    private int overTimePercent;
+    private Integer rate;
+    private Integer overTimePercent;
 
     public Company(){
 
     }
 
-    public long getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(long companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 
@@ -36,19 +36,19 @@ public class Company {
         this.workshop = workshop;
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 
-    public int getOverTimePercent() {
+    public Integer getOverTimePercent() {
         return overTimePercent;
     }
 
-    public void setOverTimePercent(int overTimePercent) {
+    public void setOverTimePercent(Integer overTimePercent) {
         this.overTimePercent = overTimePercent;
     }
 }
