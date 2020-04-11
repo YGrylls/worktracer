@@ -2,6 +2,9 @@ package com.stu.worktracer.dao;
 
 import java.util.Date;
 
+
+//a temperate entity
+//everyday this table will be cleaned, data will be transfer to es
 public class CheckInOut {
     private long uid;
     private long companyId;
