@@ -18,6 +18,12 @@ public class KnownException extends RuntimeException {
         this.msg = msg;
     }
 
+    public KnownException(String code, Throwable cause) {
+        super(cause);
+        this.errCode = code;
+        this.msg = code;
+    }
+
     public KnownException(String code, String msg) {
         super();
         this.errCode = code;

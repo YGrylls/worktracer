@@ -6,9 +6,8 @@ public class Company {
     private String name;
     private String workshop;
     private Integer rate;
-    private Integer overTimePercent;
 
-    public Company(){
+    public Company() {
 
     }
 
@@ -44,11 +43,4 @@ public class Company {
         this.rate = rate;
     }
 
-    public Integer getOverTimePercent() {
-        return overTimePercent;
-    }
-
-    public void setOverTimePercent(Integer overTimePercent) {
-        this.overTimePercent = overTimePercent;
-    }
 }

@@ -3,6 +3,7 @@ package com.stu.worktracer;
 import com.stu.worktracer.es.ESService;
 import com.stu.worktracer.es.type.CheckRecord;
 import com.stu.worktracer.es.type.Company;
+import com.stu.worktracer.redis.RedisService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,6 +60,18 @@ class WorktracerApplicationTests {
         List<Company> res0 = esService.searchCompany("弟弟", 0, 10);
         List<Company> res1 = esService.searchCompany("didiyin", 0, 10);
         System.out.println(res0);
+        System.out.println(res1);
+    }
+
+    @Autowired
+    private RedisService redisService;
+
+    @Test
+    public void testRedis() {
+        String res0 = redisService.getToken(0L);
+        System.out.println(res0);
+        redisService.setToken(0L, "tokentest000");
+        String res1 = redisService.getToken(0L);
         System.out.println(res1);
     }
 
