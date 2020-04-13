@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
-class WorktracerApplicationTests {
+class ESRedisTests {
 
     @Test
     void contextLoads() {
@@ -51,7 +51,7 @@ class WorktracerApplicationTests {
         Company company = new Company();
         company.setCompanyId(1L);
         company.setName("臭弟弟公司");
-        company.setWorkshop("阴间");
+        company.setWorkshop("上海");
         esService.indexCompany(company);
     }
 

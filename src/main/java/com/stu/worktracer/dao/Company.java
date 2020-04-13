@@ -5,7 +5,6 @@ public class Company {
     private Long companyId;
     private String name;
     private String workshop;
-    private Integer rate;
 
     public Company() {
 
@@ -35,12 +34,5 @@ public class Company {
         this.workshop = workshop;
     }
 
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setRate(Integer rate) {
-        this.rate = rate;
-    }
 
 }
