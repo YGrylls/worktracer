@@ -68,11 +68,7 @@ class ESRedisTests {
 
     @Test
     public void testRedis() {
-        String res0 = redisService.getToken(0L);
-        System.out.println(res0);
-        redisService.setToken(0L, "tokentest000");
-        String res1 = redisService.getToken(0L);
-        System.out.println(res1);
+
     }
 
 }

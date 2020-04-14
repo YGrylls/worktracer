@@ -1,5 +1,6 @@
 package com.stu.worktracer.controller;
 
+import com.stu.worktracer.aop.Auth;
 import com.stu.worktracer.dto.*;
 import com.stu.worktracer.error.ErrCode;
 import com.stu.worktracer.error.KnownException;
@@ -34,6 +35,7 @@ public class CompanyController {
         return ResponseUtil.sucRes(dc);
     }
 
+    @Auth
     @PostMapping("/submitnewcom")
     public ResponseDTO submitNewCom(HttpServletRequest httpRequest, @RequestBody NewCompanyRequest request) throws KnownException {
         companyService.submitNewCom(request.getCompanyName(), request.getWorkshop());
