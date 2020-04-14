@@ -1,6 +1,6 @@
 package com.stu.worktracer.error;
 
-public class KnownException extends RuntimeException {
+public class KnownException extends Exception {
     private String errCode;
     private String msg;
 

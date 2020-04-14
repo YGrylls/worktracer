@@ -5,6 +5,8 @@ public class Company {
     private Long companyId;
     private String name;
     private String workshop;
+    private Integer rate;
+    private Integer welfare;
 
     public Company() {
 
@@ -34,5 +36,19 @@ public class Company {
         this.workshop = workshop;
     }
 
+    public Integer getRate() {
+        return rate;
+    }
 
+    public void setRate(Integer rate) {
+        this.rate = rate;
+    }
+
+    public Integer getWelfare() {
+        return welfare;
+    }
+
+    public void setWelfare(Integer welfare) {
+        this.welfare = welfare;
+    }
 }

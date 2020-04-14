@@ -1,12 +1,19 @@
 package com.stu.worktracer.dto;
 
-public class SimpleCompany {
-
+public class CheckCompanyRes {
+    private Boolean valid;
     private Long companyId;
     private String companyName;
-    private Integer rate;
 
-    public SimpleCompany() {
+    public CheckCompanyRes() {
+    }
+
+    public Boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(Boolean valid) {
+        this.valid = valid;
     }
 
     public Long getCompanyId() {
@@ -23,13 +30,5 @@ public class SimpleCompany {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setRate(Integer rate) {
-        this.rate = rate;
     }
 }

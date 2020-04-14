@@ -1,47 +1,55 @@
 package com.stu.worktracer.controller;
 
-import com.stu.worktracer.dto.CompanyIdRequest;
-import com.stu.worktracer.dto.LoginRequest;
-import com.stu.worktracer.dto.RegisterRequest;
-import com.stu.worktracer.dto.ResponseDTO;
+import com.stu.worktracer.dto.*;
+import com.stu.worktracer.error.KnownException;
+import com.stu.worktracer.service.UserServiceInterface;
 import com.stu.worktracer.utils.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class UserController {
+import javax.servlet.http.HttpServletRequest;
 
+@RestController
+public class UserController extends BaseController {
+
+
+    @Autowired
+    private UserServiceInterface userService;
 
     @PostMapping("/checkcom")
-    public ResponseDTO checkCom() {
-        return null;
+    public ResponseDTO checkCom() throws KnownException {
+        Long uid = getUid();
+        CheckCompanyRes res = userService.checkCom(uid);
+        return ResponseUtil.sucRes(res);
     }
 
     @PostMapping("/login")
-    public ResponseDTO login(@RequestBody LoginRequest request) {
+    public ResponseDTO login(HttpServletRequest httpRequest, @RequestBody LoginRequest request) throws KnownException {
         String valid = request.validate();
         if (valid != null) {
             return ResponseUtil.errRes(valid);
         }
-
-        return null;
-
+        String token = userService.register(request.getUsername(), request.getPw());
+        return ResponseUtil.sucRes(token);
     }
 
     @PostMapping("/register")
-    public ResponseDTO register(@RequestBody RegisterRequest request) {
+    public ResponseDTO register(HttpServletRequest httpRequest, @RequestBody RegisterRequest request) throws KnownException {
         String valid = request.validate();
         if (valid != null) {
             return ResponseUtil.errRes(valid);
         }
-
-        return null;
+        String token = userService.register(request.getUsername(), request.getPw());
+        return ResponseUtil.sucRes(token);
     }
 
     @PostMapping("/modifycom")
-    public ResponseDTO modifyCom(@RequestBody CompanyIdRequest request) {
-        return null;
+    public ResponseDTO modifyCom(HttpServletRequest httpRequest, @RequestBody CompanyIdRequest request) throws KnownException {
+        Long uid = getUid();
+        userService.modifyCom(uid, request.getCompanyId());
+        return ResponseUtil.sucRes("ok");
     }
 
 

@@ -1,8 +1,6 @@
 package com.stu.worktracer.redis;
 
 import com.stu.worktracer.dto.DetailCompany;
-import com.stu.worktracer.error.ErrCode;
-import com.stu.worktracer.error.KnownException;
 import joptsimple.internal.Strings;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -28,29 +26,22 @@ public class RedisService {
     }
 
     public void setToken(Long uid, String token) {
-        String key = uid2Key(uid);
-        try {
-            redisTemplate.opsForValue().set(key, token, 15, TimeUnit.DAYS);
-        } catch (Exception e) {
-            throw new KnownException(ErrCode.INTERNAL_SERVER_ERROR, e);
-        }
+
+        redisTemplate.opsForValue().set(token, uid.toString(), 15, TimeUnit.DAYS);
+
 
     }
 
-    public String getToken(Long uid) {
-        String key = uid2Key(uid);
-        try {
-            return redisTemplate.opsForValue().get(key);
-        } catch (Exception e) {
-            throw new KnownException(ErrCode.INTERNAL_SERVER_ERROR, e);
+    public Long getUid(String token) {
+
+        String uidString = redisTemplate.opsForValue().get(token);
+        if (uidString == null) {
+            return null;
         }
+        return Long.valueOf(uidString);
     }
 
     private static String KEY_SEP = ":";
-
-    private static String uid2Key(Long uid) {
-        return Strings.join(new String[]{"USER", uid.toString()}, KEY_SEP);
-    }
 
     private static String companyId2Key(Long companyId) {
         return Strings.join(new String[]{"COM", companyId.toString()}, KEY_SEP);

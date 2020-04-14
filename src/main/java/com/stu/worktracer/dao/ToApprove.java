@@ -3,6 +3,7 @@ package com.stu.worktracer.dao;
 import java.util.Date;
 
 public class ToApprove {
+    private Long id;
     private String companyName;
     private String workshop;
     private Date submitTime;
@@ -32,5 +33,13 @@ public class ToApprove {
 
     public void setSubmitTime(Date submitTime) {
         this.submitTime = submitTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

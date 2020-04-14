@@ -1,4 +1,7 @@
 package com.stu.worktracer.service;
 
-public class RatingService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class RatingService implements RatingServiceInterface {
 }

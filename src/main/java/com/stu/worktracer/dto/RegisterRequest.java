@@ -27,10 +27,10 @@ public class RegisterRequest {
     }
 
     public String validate() {
-        if (username.length() > 16) {
+        if (username.length() > 16 || username.length() < 4) {
             return ErrCode.USERNAME_FORMAT_ERROR;
         }
-        if (pw.length() > 16) {
+        if (pw.length() > 16 || pw.length() < 4) {
             return ErrCode.PASSWORD_FORMAT_ERROR;
         }
 
