@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class MyBatisTests {
         Company com = new Company();
         com.setName("Root Inc");
         com.setWorkshop("上海");
-        int res = companyMapper.addCompany(com);
+        Long res = companyMapper.addCompany(com);
         System.out.println(res);
     }
 
@@ -48,6 +49,14 @@ public class MyBatisTests {
         System.out.println(res1);
         List<CheckInOut> list = checkInOutMapper.getAllCheckRecord(0, 10);
         System.out.println(list);
+    }
+
+    @Test
+    void testInClause() {
+        List<Long> ids = new ArrayList<>();
+        ids.add(8L);
+        List<Company> res = companyMapper.getCompanyByList(ids);
+        System.out.println(res);
     }
 
 }

@@ -6,6 +6,7 @@ import com.stu.worktracer.dao.ToApprove;
 import com.stu.worktracer.dao.ToApproveMapper;
 import com.stu.worktracer.error.ErrCode;
 import com.stu.worktracer.error.KnownException;
+import com.stu.worktracer.es.ESService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +19,12 @@ public class AdminService implements AdminServiceInterface {
 
     private final CompanyMapper companyMapper;
 
-    public AdminService(ToApproveMapper toApproveMapper, CompanyMapper companyMapper) {
+    private final ESService esService;
+
+    public AdminService(ToApproveMapper toApproveMapper, CompanyMapper companyMapper, ESService esService) {
         this.toApproveMapper = toApproveMapper;
         this.companyMapper = companyMapper;
+        this.esService = esService;
     }
 
     @Override
@@ -42,6 +46,11 @@ public class AdminService implements AdminServiceInterface {
         nc.setWelfare(0);
         companyMapper.addCompany(nc);
         toApproveMapper.deleteToApprove(id);
+        com.stu.worktracer.es.type.Company esCompany = new com.stu.worktracer.es.type.Company();
+        esCompany.setWorkshop(toApprove.getWorkshop());
+        esCompany.setName(toApprove.getCompanyName());
+        esCompany.setCompanyId(nc.getCompanyId());
+        esService.indexCompany(esCompany);
     }
 
     @Override

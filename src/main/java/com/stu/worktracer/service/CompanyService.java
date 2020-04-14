@@ -42,6 +42,9 @@ public class CompanyService implements CompanyServiceInterface {
     public List<SimpleCompany> getCompanyList(String search, int page, int size) throws KnownException {
         List<com.stu.worktracer.es.type.Company> esList = esService.searchCompany(search, page, size);
         List<Long> ids = new ArrayList<>(esList.size());
+        if (esList.size() <= 0) {
+            return new ArrayList<>();
+        }
         for (com.stu.worktracer.es.type.Company c : esList) {
             ids.add(c.getCompanyId());
         }

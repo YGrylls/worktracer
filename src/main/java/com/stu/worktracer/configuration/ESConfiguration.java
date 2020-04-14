@@ -14,6 +14,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchEntityMapper;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.EntityMapper;
 
+import javax.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -28,6 +29,12 @@ public class ESConfiguration extends ElasticsearchConfigurationSupport {
 
     @Value("${elasticsearch.clustername}")
     private String clustername;
+
+    @PostConstruct
+    public void setProperties() {
+        System.setProperty("es.set.netty.runtime.available.processors", "false");
+    }
+
     @Bean
     public Client elasticsearchClient() throws UnknownHostException {
         Settings settings = Settings.builder().put("cluster.name", clustername).build();

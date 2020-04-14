@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-public class CompanyController {
+public class CompanyController extends BaseController {
 
     @Autowired
     private CompanyServiceInterface companyService;

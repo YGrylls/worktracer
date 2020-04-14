@@ -17,6 +17,7 @@ class ESRedisTests {
 
     @Test
     void contextLoads() {
+
     }
 
 
@@ -25,7 +26,7 @@ class ESRedisTests {
 
     @Test
     public void testCreateIndex() {
-        esService.createIndex("check_record", CheckRecord.class);
+        esService.createIndex("company", Company.class);
     }
 
     @Test
@@ -49,9 +50,9 @@ class ESRedisTests {
     @Test
     public void testIndexCompany() {
         Company company = new Company();
-        company.setCompanyId(1L);
-        company.setName("臭弟弟公司");
-        company.setWorkshop("上海");
+        company.setCompanyId(8L);
+        company.setName("测试计算机有限公司");
+        company.setWorkshop("百京");
         esService.indexCompany(company);
     }
 
