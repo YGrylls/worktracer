@@ -4,7 +4,7 @@ public class User {
     private Long uid;
     private String username;
     private String pw;
-
+    private Integer surveyed;
 
     public User() {
     }
@@ -31,5 +31,13 @@ public class User {
 
     public void setPw(String pw) {
         this.pw = pw;
+    }
+
+    public Integer getSurveyed() {
+        return surveyed;
+    }
+
+    public void setSurveyed(Integer surveyed) {
+        this.surveyed = surveyed;
     }
 }

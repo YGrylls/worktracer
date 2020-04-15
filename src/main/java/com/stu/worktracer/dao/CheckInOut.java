@@ -12,6 +12,9 @@ public class CheckInOut {
     private Date checkIn;
     private Date checkOut;
 
+    //for join
+    private String companyName;
+
     public CheckInOut() {
     }
 
@@ -53,5 +56,13 @@ public class CheckInOut {
 
     public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }

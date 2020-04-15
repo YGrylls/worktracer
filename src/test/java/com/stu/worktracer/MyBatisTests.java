@@ -1,6 +1,7 @@
 package com.stu.worktracer;
 
 import com.stu.worktracer.dao.*;
+import org.apache.commons.math3.analysis.function.Sigmoid;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,7 +41,7 @@ public class MyBatisTests {
         long now = new Date().getTime();
         CheckInOut rec = new CheckInOut();
         rec.setCheckIn(new Date(now));
-        rec.setCompanyId(3L);
+        rec.setCompanyId(8L);
         rec.setUid(1L);
         rec.setPercentFix(100);
         int res0 = checkInOutMapper.addCheckRecord(rec);
@@ -57,6 +58,14 @@ public class MyBatisTests {
         ids.add(8L);
         List<Company> res = companyMapper.getCompanyByList(ids);
         System.out.println(res);
+    }
+
+    @Test
+    void testSigmoid() {
+        Sigmoid sigmoid = new Sigmoid(0, 1);
+        System.out.println(sigmoid.value(2));
+        System.out.println(sigmoid.value(5));
+        System.out.println(sigmoid.value(6));
     }
 
 }

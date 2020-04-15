@@ -1,5 +1,6 @@
 package com.stu.worktracer;
 
+import com.stu.worktracer.dao.CheckInOut;
 import com.stu.worktracer.es.ESService;
 import com.stu.worktracer.es.type.CheckRecord;
 import com.stu.worktracer.es.type.Company;
@@ -26,7 +27,7 @@ class ESRedisTests {
 
     @Test
     public void testCreateIndex() {
-        esService.createIndex("company", Company.class);
+        esService.createIndex("check_record", CheckInOut.class);
     }
 
     @Test
@@ -35,7 +36,6 @@ class ESRedisTests {
         record.setCompanyId(0L);
         record.setCompanyName("Nook Inc");
         record.setUid(0L);
-        record.setUsername("Tom Nook");
         record.setCheckInTime(Calendar.getInstance().getTimeInMillis() - 3600 * 40 * 1000L);
         record.setCheckOutTime(Calendar.getInstance().getTimeInMillis() - 3600 * 32 * 1000L);
         esService.indexCheckRecordBulk(Collections.singletonList(record));

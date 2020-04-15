@@ -15,9 +15,6 @@ public class WelfareRecord {
     @Field(type = FieldType.Keyword)
     private Long companyId;
 
-    @Field(type = FieldType.Keyword)
-    private String username;
-
     @MultiField(
             mainField = @Field(type = FieldType.Keyword),
             otherFields = {
@@ -32,6 +29,9 @@ public class WelfareRecord {
 
     @Field(type = FieldType.Date)
     private Long surveyTime;
+
+    @Field(type = FieldType.Integer)
+    private Integer percentFix;
 
     public WelfareRecord() {
     }
@@ -60,14 +60,6 @@ public class WelfareRecord {
         this.companyId = companyId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getCompanyName() {
         return companyName;
     }
@@ -90,5 +82,13 @@ public class WelfareRecord {
 
     public void setSurveyTime(Long surveyTime) {
         this.surveyTime = surveyTime;
+    }
+
+    public Integer getPercentFix() {
+        return percentFix;
+    }
+
+    public void setPercentFix(Integer percentFix) {
+        this.percentFix = percentFix;
     }
 }

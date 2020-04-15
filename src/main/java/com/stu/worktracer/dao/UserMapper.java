@@ -3,6 +3,7 @@ package com.stu.worktracer.dao;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 
@@ -18,4 +19,12 @@ public interface UserMapper {
     int addUser(User user);
 
 
+    @Select("SELECT uid, username, surveyed FROM user WHERE user.uid = #{uid}")
+    User getUserSurveyByUid(Long uid);
+
+    @Update("UPDATE user SET user.surveyed = 1 WHERE user.uid = #{uid}")
+    int updateSurveyedByUid(Long uid);
+
+    @Update("UPDATE user SET user.surveyed = 0")
+    int clearAllSurveyed();
 }

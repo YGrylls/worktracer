@@ -12,4 +12,5 @@ public class ErrCode {
     public static String REQUEST_FORMAT_ERROR = "RequestFormatError";
     public static String COMPANY_EXIST_ERROR = "CompanyExistError";
     public static String LOGIN_ERROR = "LoginError";
+    public static String CHECK_IN_OUT_ERROR = "CheckInOutError";
 }

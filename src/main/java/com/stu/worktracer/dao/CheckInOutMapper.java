@@ -19,7 +19,10 @@ public interface CheckInOutMapper {
     @Delete("DELETE FROM daily_check")
     int clearAll();
 
-    @Select("SELECT uid, companyId, percentFix, checkIn, checkOut FROM daily_check ORDER BY checkIn LIMIT #{page}, #{size}")
+    @Select("SELECT uid, daily_check.companyId, percentFix, checkIn, checkOut, company.name AS companyName FROM daily_check JOIN company ON daily_check.companyId = company.companyId WHERE daily_check.checkOut IS NOT NULL ORDER BY checkIn LIMIT #{page}, #{size}")
     List<CheckInOut> getAllCheckRecord(int page, int size);
+
+    @Select("SELECT uid, companyId, percentFix, checkIn, checkOut FROM daily_check WHERE daily_check.uid = #{uid}")
+    CheckInOut getCheckRecordByUid(Long uid);
 
 }

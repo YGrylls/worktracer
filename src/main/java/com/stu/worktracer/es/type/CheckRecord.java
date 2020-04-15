@@ -15,9 +15,6 @@ public class CheckRecord {
     @Field(type = FieldType.Keyword)
     private Long companyId;
 
-    @Field(type = FieldType.Keyword)
-    private String username;
-
     @MultiField(
             mainField = @Field(type = FieldType.Keyword),
             otherFields = {
@@ -32,6 +29,9 @@ public class CheckRecord {
 
     @Field(type = FieldType.Date)
     private Long checkOutTime;
+
+    @Field(type = FieldType.Integer)
+    private Integer percentFix;
 
     public CheckRecord() {
     }
@@ -60,14 +60,6 @@ public class CheckRecord {
         this.companyId = companyId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getCompanyName() {
         return companyName;
     }
@@ -90,5 +82,13 @@ public class CheckRecord {
 
     public void setCheckOutTime(Long checkOutTime) {
         this.checkOutTime = checkOutTime;
+    }
+
+    public Integer getPercentFix() {
+        return percentFix;
+    }
+
+    public void setPercentFix(Integer percentFix) {
+        this.percentFix = percentFix;
     }
 }
