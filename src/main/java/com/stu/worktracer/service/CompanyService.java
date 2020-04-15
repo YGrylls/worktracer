@@ -9,7 +9,6 @@ import com.stu.worktracer.dto.SimpleCompany;
 import com.stu.worktracer.error.ErrCode;
 import com.stu.worktracer.error.KnownException;
 import com.stu.worktracer.es.ESService;
-import com.stu.worktracer.redis.RedisService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,16 +23,14 @@ public class CompanyService implements CompanyServiceInterface {
 
     private final ESService esService;
 
-    private final RedisService redisService;
 
     private final ToApproveMapper toApproveMapper;
 
     private final RatingServiceInterface ratingService;
 
-    public CompanyService(CompanyMapper companyMapper, ESService esService, RedisService redisService, ToApproveMapper toApproveMapper, RatingServiceInterface ratingService) {
+    public CompanyService(CompanyMapper companyMapper, ESService esService, ToApproveMapper toApproveMapper, RatingServiceInterface ratingService) {
         this.companyMapper = companyMapper;
         this.esService = esService;
-        this.redisService = redisService;
         this.toApproveMapper = toApproveMapper;
         this.ratingService = ratingService;
     }
@@ -63,22 +60,13 @@ public class CompanyService implements CompanyServiceInterface {
 
     @Override
     public DetailCompany getCompanyInfo(Long companyId) throws KnownException {
-        //TODO
-        DetailCompany dc = new DetailCompany();
         Company company = companyMapper.getCompanyById(companyId);
         if (company == null) {
             throw new KnownException(ErrCode.COMPANY_NOT_EXIST_ERROR);
         }
-        dc.setCompanyId(company.getCompanyId());
+        DetailCompany dc = ratingService.getRating(companyId);
         dc.setName(company.getName());
         dc.setWorkshop(company.getWorkshop());
-        dc.setTotalRate(company.getRate());
-        dc.setWelfare(company.getWelfare());
-        // TODO
-        dc.setOffWorkTimeMonth(0L);
-        dc.setOffWorkTimeWeek(0L);
-        dc.setStartWorkTimeMonth(0L);
-        dc.setStartWorkTimeWeek(0L);
         return dc;
     }
 

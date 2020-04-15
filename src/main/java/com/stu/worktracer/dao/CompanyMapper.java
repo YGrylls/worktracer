@@ -25,4 +25,11 @@ public interface CompanyMapper {
             "</script>")
     List<Company> getCompanyByList(@Param("ids") List<Long> ids);
 
+    @Select("SELECT companyId, name, rate, welfare FROM company ORDER BY companyId LIMIT #{page}, #{size}")
+    List<Company> getAllCompany(int page, int size);
+
+
+    @Update("UPDATE company SET rate = #{rate}, welfare = #{welfare} WHERE companyId = #{companyId}")
+    int updateRating(Long companyId, Integer rate, Integer welfare);
+
 }

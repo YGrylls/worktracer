@@ -76,9 +76,7 @@ public class CheckService implements CheckServiceInterface {
     @Override
     @Transactional
     public void survey(Long uid, Integer welfare) throws KnownException {
-        if (welfare < 0 || welfare > 10) {
-            throw new KnownException(ErrCode.REQUEST_FORMAT_ERROR);
-        }
+
         if (checkSurvey(uid)) {
             Hired hired = hiredMapper.getHiredByUid(uid);
             if (hired == null) {
