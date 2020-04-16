@@ -126,8 +126,8 @@ public class RatingService implements RatingServiceInterface {
             dc.setStartWorkTimeWeek(0L);
             dc.setOffWorkTimeWeek(0L);
         } else {
-            dc.setStartWorkTimeWeek((long) (totalInWeek / totalNumWeek));
-            dc.setOffWorkTimeWeek((long) (totalOutWeek / totalNumWeek));
+            dc.setStartWorkTimeWeek((long) (totalInWeek / totalNumWeek / 1000));
+            dc.setOffWorkTimeWeek((long) (totalOutWeek / totalNumWeek / 1000));
         }
 
         //month
@@ -136,8 +136,8 @@ public class RatingService implements RatingServiceInterface {
             dc.setOffWorkTimeMonth(0L);
             dc.setWorkOvertime(0);
         } else {
-            dc.setStartWorkTimeMonth((long) (totalInMonth / totalNumMonth));
-            dc.setOffWorkTimeMonth((long) (totalOutMonth / totalNumMonth));
+            dc.setStartWorkTimeMonth((long) (totalInMonth / totalNumMonth / 1000));
+            dc.setOffWorkTimeMonth((long) (totalOutMonth / totalNumMonth / 1000));
             dc.setWorkOvertime((int) (workOvertime * 100 / totalNumMonth));
         }
 
