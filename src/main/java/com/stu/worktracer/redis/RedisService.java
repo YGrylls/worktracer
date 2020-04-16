@@ -34,6 +34,16 @@ public class RedisService {
         redisTemplate.opsForValue().set(token, uid.toString(), 15, TimeUnit.DAYS);
     }
 
+    /**
+     * @param host client hostname
+     * @return if cd has passed
+     */
+    public boolean getSetOpenCD(String host) {
+        Boolean res = redisTemplate.opsForValue().setIfPresent(host, "", 15, TimeUnit.SECONDS);
+        return res;
+    }
+
+
     private DetailCompany JSON2Company(String json) {
         return JSON.parseObject(json, DetailCompany.class);
     }

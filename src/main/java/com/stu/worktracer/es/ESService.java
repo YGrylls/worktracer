@@ -81,8 +81,15 @@ public class ESService {
     }
 
 
-    private <T> List<T> queryTime(String indexName, Long id, Class<T> clazz, String timeField, Long from, Long to) {
+    public <T> List<T> queryTime(String indexName, Long id, Class<T> clazz, String timeField, Long from, Long to) {
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder().withIndices(indexName).withPageable(PageRequest.of(0, MAX_TIME_RANGE_LIMIT));
+        RangeQueryBuilder rangeBuilder = QueryBuilders.rangeQuery(timeField).from(from).to(to);
+        BoolQueryBuilder boolRangeBuilder = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("companyId", id)).must(rangeBuilder);
+        return template.queryForList(builder.withQuery(boolRangeBuilder).build(), clazz);
+    }
+
+    public <T> List<T> queryTimePage(String indexName, Long id, Class<T> clazz, String timeField, Long from, Long to, int page, int size) {
+        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder().withIndices(indexName).withPageable(PageRequest.of(page, size));
         RangeQueryBuilder rangeBuilder = QueryBuilders.rangeQuery(timeField).from(from).to(to);
         BoolQueryBuilder boolRangeBuilder = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("companyId", id)).must(rangeBuilder);
         return template.queryForList(builder.withQuery(boolRangeBuilder).build(), clazz);

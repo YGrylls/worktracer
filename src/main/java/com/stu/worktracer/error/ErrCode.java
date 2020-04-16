@@ -13,4 +13,5 @@ public class ErrCode {
     public static String COMPANY_EXIST_ERROR = "CompanyExistError";
     public static String LOGIN_ERROR = "LoginError";
     public static String CHECK_IN_OUT_ERROR = "CheckInOutError";
+    public static String OPEN_API_COLD_DOWN = "OpenAPIColdDown";
 }
