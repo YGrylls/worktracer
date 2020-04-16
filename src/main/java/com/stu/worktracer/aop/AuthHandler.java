@@ -32,6 +32,9 @@ public class AuthHandler {
         Object[] args = pjp.getArgs();
         HttpServletRequest request = (HttpServletRequest) args[0];
         String token = request.getHeader(TOKEN_KEY);
+        if (token == null) {
+            return ResponseUtil.errRes(ErrCode.AUTH_ERROR);
+        }
         Long uid = redisService.getUid(token);
         if (uid == null) {
             return ResponseUtil.errRes(ErrCode.AUTH_ERROR);

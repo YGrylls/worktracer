@@ -34,7 +34,7 @@ public class OpenAPIService {
     }
 
     public List<OpenWelfareRecord> queryWelfare(Long companyId, long from, long to, int page, int size) {
-        List<WelfareRecord> esList = esService.queryTimePage("welfare_record", companyId, WelfareRecord.class, "checkInTime", from, to, page, size);
+        List<WelfareRecord> esList = esService.queryTimePage("welfare_record", companyId, WelfareRecord.class, "surveyTime", from, to, page, size);
         List<OpenWelfareRecord> resList = new ArrayList<>(esList.size());
         for (WelfareRecord record : esList) {
             OpenWelfareRecord openRecord = new OpenWelfareRecord();

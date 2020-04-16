@@ -60,6 +60,7 @@ public class RatingService implements RatingServiceInterface {
         dc.setCompanyId(companyId);
         //set cache
         companyMapper.updateRating(companyId, dc.getTotalRate(), dc.getWelfare());
+        //todo disable cache for debug use
         redisService.setCompanyCache(dc);
         return dc;
     }
@@ -97,7 +98,7 @@ public class RatingService implements RatingServiceInterface {
             }
             long overTime = workTime - STANDARD_WORK_TIME;
             if (overTime > OVER_WORK_ALW) {
-                double overPercent = (double) (overTime / STANDARD_WORK_TIME);
+                double overPercent = (double) overTime / STANDARD_WORK_TIME;
                 if (overPercent > 1) {
                     overPercent = 1;
                 }

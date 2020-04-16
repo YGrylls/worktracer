@@ -1,6 +1,5 @@
 package com.stu.worktracer;
 
-import com.stu.worktracer.dao.CheckInOut;
 import com.stu.worktracer.es.ESService;
 import com.stu.worktracer.es.type.CheckRecord;
 import com.stu.worktracer.es.type.Company;
@@ -27,7 +26,7 @@ class ESRedisTests {
 
     @Test
     public void testCreateIndex() {
-        esService.createIndex("check_record", CheckInOut.class);
+        esService.createIndex("company", Company.class);
     }
 
     @Test
@@ -69,7 +68,7 @@ class ESRedisTests {
 
     @Test
     public void testRedis() {
-
+        redisService.removeCache("COM:8");
     }
 
 }

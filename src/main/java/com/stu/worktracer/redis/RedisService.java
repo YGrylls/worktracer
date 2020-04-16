@@ -34,12 +34,16 @@ public class RedisService {
         redisTemplate.opsForValue().set(token, uid.toString(), 15, TimeUnit.DAYS);
     }
 
+    public void removeCache(String key) {
+        redisTemplate.delete(key);
+    }
+
     /**
      * @param host client hostname
      * @return if cd has passed
      */
     public boolean getSetOpenCD(String host) {
-        Boolean res = redisTemplate.opsForValue().setIfPresent(host, "", 15, TimeUnit.SECONDS);
+        Boolean res = redisTemplate.opsForValue().setIfAbsent(host, "", 15, TimeUnit.SECONDS);
         return res;
     }
 
