@@ -14,4 +14,6 @@ public interface CheckServiceInterface {
     Boolean checkSurvey(Long uid) throws KnownException;
 
     void processDailyRecord() throws KnownException;
+
+    void clearSurveyed() throws KnownException;
 }

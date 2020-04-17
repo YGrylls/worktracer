@@ -19,6 +19,7 @@ public class Scheduler {
     public void monthlyRating() {
         try {
             ratingService.refreshAllRatings();
+            checkService.clearSurveyed();
         } catch (Exception e) {
             e.printStackTrace();
         }

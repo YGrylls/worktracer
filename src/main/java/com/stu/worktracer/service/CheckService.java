@@ -91,6 +91,7 @@ public class CheckService implements CheckServiceInterface {
             welfareRecord.setUid(uid);
             welfareRecord.setPercentFix(getPercentFix(hired));
             esService.indexWelfare(welfareRecord);
+            userMapper.updateSurveyedByUid(uid);
         } else {
             throw new KnownException(ErrCode.REPEAT_MONTHLY_SURVEY_ERROR);
         }
@@ -136,6 +137,11 @@ public class CheckService implements CheckServiceInterface {
             }
         }
         checkInOutMapper.clearAll();
+    }
+
+    @Override
+    public void clearSurveyed() throws KnownException {
+        userMapper.clearAllSurveyed();
     }
 
 
