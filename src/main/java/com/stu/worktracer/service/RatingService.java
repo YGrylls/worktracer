@@ -61,7 +61,7 @@ public class RatingService implements RatingServiceInterface {
         //set cache
         companyMapper.updateRating(companyId, dc.getTotalRate(), dc.getWelfare());
         //todo disable cache for debug use
-        redisService.setCompanyCache(dc);
+//        redisService.setCompanyCache(dc);
         return dc;
     }
 

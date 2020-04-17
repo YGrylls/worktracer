@@ -14,6 +14,7 @@ import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -48,9 +49,15 @@ public class ESService {
 
     public List<Company> searchCompany(String searchText, int page, int size) {
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder().withIndices("company").withPageable(PageRequest.of(page, size));
-        QueryBuilder queryBuilder = QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("name.ik", searchText).boost(2.0f))
-                .should(QueryBuilders.matchQuery("name.pinyin", searchText));
+        QueryBuilder queryBuilder;
+        if (!StringUtils.isEmpty(searchText)) {
+            queryBuilder = QueryBuilders.boolQuery().should(QueryBuilders.matchQuery("name.ik", searchText).boost(2.0f))
+                    .should(QueryBuilders.matchQuery("name.pinyin", searchText));
+        } else {
+            queryBuilder = QueryBuilders.matchAllQuery();
+        }
         return template.queryForList(builder.withQuery(queryBuilder).build(), Company.class);
+
     }
 
     public List<CheckRecord> queryCheckRecordWeek(Long companyId) {
